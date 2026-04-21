@@ -24,10 +24,11 @@ def improve_text(text, mode):
         text = text.replace(k, v)
 
     if mode == "formal":
-        text = text.replace("pls", "")
-        text = text.replace("please", "")
+        text = text.replace("pls", "").replace("please", "")
         text = text.replace("job", "a job opportunity")
-        improved = (text.strip() + ".").capitalize()
+        improved = text.strip().capitalize()
+        if not improved.endswith("."):
+            improved += "."
 
     elif mode == "friendly":
         improved = "Hey! " + text.capitalize() + " 😊"
@@ -48,17 +49,22 @@ def improve_text(text, mode):
 
 
 st.title("🔥 AI Text Improver")
-st.write("Improve your text in different styles using AI-like logic.")
+st.markdown("Improve your text into professional, friendly, or concise style.")
 
 user_input = st.text_area("Enter your text:")
 mode = st.selectbox("Choose mode:", ["formal", "friendly", "concise"])
 
 
 if st.button("✨ Improve Text"):
-    st.write("Processing....")
-    time.sleep(1)
+    if not user_input:
+        st.warning("Please enter some text")
+    else:
+        with st.spinner("Processing..."):
+            time.sleep(1)
 
-    result = improve_text(user_input, mode)
-    st.success("Text improved successfully!")
+        result = improve_text(user_input, mode)
 
-    st.json(result)
+        st.subheader("✨ Improved Text:")
+        st.write(result["improved_text"])
+
+        st.code(result["improved_text"])
