@@ -26,5 +26,13 @@ https://ai-text-improver-pnpu9ysktcj2uvcudcsxfy.streamlit.app/
 ## 📷 Preview
 (Add screenshot later)
 
+## 💡 Why this project?
+This project demonstrates how AI-style systems can be simulated using prompt-based behavior and structured outputs without relying on external APIs.
+
+## 🚧 Future Improvements
+- Add real AI API integration
+- Add file upload support
+- Improve UI/UX
+  
 ## 👨‍💻 Author
 Vishwam Gawande
